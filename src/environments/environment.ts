@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'https://graph.microsoft.com/v1.0/users',
+  scopeUri: ['user.read'], // ['api://d865bf85-0e22-42ec-9e74-bdcf0178f9af/retiro'],
+  tenantId: 'f8733e19-5615-4258-907e-cb8c982ffc34',
+  uiClienId: '8c757de3-f9f8-41da-80ad-fdcdb15ff46d',
+  redirectUrl: 'http://localhost:4200',
 };
 
 /*
