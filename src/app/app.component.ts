@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from './services/data.service';
 import axios from 'axios';
-import { AxiosInstance } from 'axios';
+// import { AxiosInstance } from 'axios';
 
 @Component({
   selector: 'app-root',
