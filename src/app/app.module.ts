@@ -11,12 +11,13 @@ import {
   HttpClient,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
+import { ParametrosComponent } from './parametros/parametros.component';
 export const protectedResourceMap: any = [
   [environment.baseUrl, environment.scopeUri],
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ParametrosComponent],
   imports: [
     MsalModule.forRoot({
       clientID: environment.uiClienId,
@@ -27,6 +28,7 @@ export const protectedResourceMap: any = [
     }),
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     HttpClient,

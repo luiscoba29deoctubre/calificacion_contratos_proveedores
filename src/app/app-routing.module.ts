@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MsalGuard } from '@azure/msal-angular';
+import { ParametrosComponent } from './parametros/parametros.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent, canActivate: [MsalGuard] },
+  { path: '', component: ParametrosComponent, canActivate: [MsalGuard] },
 ];
 
 @NgModule({

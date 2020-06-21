@@ -10,6 +10,9 @@ import { AxiosInstance } from 'axios';
 })
 export class AppComponent {
   title = 'client-contratos';
+  name = '';
+  email = '';
+
   /*
   axios.get('localhost:8080/')
   .then(response => console.log(respose))

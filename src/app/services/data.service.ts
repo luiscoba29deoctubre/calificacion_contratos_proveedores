@@ -6,46 +6,42 @@ import { MsalUserService } from './msaluser.service';
 import { Employee } from './employee';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-    private url = environment.baseUrl;
+  private url = environment.baseUrl;
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+
+  constructor(private http: HttpClient, private msalService: MsalUserService) {}
+
+  getEmployees(): Observable<Employee[]> {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.msalService.GetAccessToken(),
+      }),
     };
+    console.log(this.msalService.clientApplication.getAllUsers());
 
-    constructor(private http: HttpClient, private msalService: MsalUserService
-    ) { }
+    return this.http.get(this.url, this.httpOptions).pipe((response: any) => {
+      return response;
+    });
+  }
 
-    getEmployees(): Observable<Employee[]> {
-       
-        this.httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.msalService.GetAccessToken()
-            })
+  getName() {
+    console.log(this.msalService.clientApplication.getUser());
+    return this.msalService.clientApplication.getUser().name;
+  }
+  getEmail() {
+    return this.msalService.clientApplication.getUser().displayableId;
+  }
 
-        };
-        console.log(this.msalService.clientApplication.getUser().idToken);
-        
-        return this.http.get(this.url, this.httpOptions)
-            .pipe((response: any) => {
-                return response;
-            });
-    }
-
-    getName(){
-        console.log(this.msalService.clientApplication.getUser());
-        return this.msalService.clientApplication.getUser().name;
-    }
-    getEmail(){
-        return this.msalService.clientApplication.getUser().displayableId;
-    }
-
-    logout(){
-        this.msalService.logout();
-    }
-}  
+  logout() {
+    this.msalService.logout();
+  }
+}
